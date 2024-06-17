@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package ordermanagement;
+
+option go_package = "/proto";
+
+service OrderManagement {
+    rpc GetAllOrders(GetAllOrdersRequest) returns (GetAllOrdersResponse);
+    rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+    rpc AssignRider(AssignRiderRequest) returns (AssignRiderResponse);
+    rpc MarkOrderDelivered(MarkOrderDeliveredRequest) returns (MarkOrderDeliveredResponse);
+}
+
+message Order {
+    string order_id = 1;
+    string user_id = 2;
+    string timestamp = 3;
+    string item_id = 4;
+    string rider_id = 5;
+    string restaurant_id = 6;
+    string delivery_address = 7;
+    bool assigned = 8;
+    bool delivered = 9;
+}
+
+message GetAllOrdersRequest {
+}
+
+message GetAllOrdersResponse {
+    repeated Order orders = 1;
+}
+
+message CreateOrderRequest {
+    string user_id = 1;
+    string item_id = 2;
+    string restaurant_id = 3;
+    string delivery_address = 4;
+}
+
+message CreateOrderResponse {
+    string order_id = 1;
+    bool success = 2;
+}
+
+message AssignRiderRequest {
+    string order_id = 1;
+}
+
+message AssignRiderResponse {
+    bool success = 1;
+    string rider_id = 2;
+}
+
+message MarkOrderDeliveredRequest {
+    string order_id = 1;
+}
+
+message MarkOrderDeliveredResponse {
+    bool success = 1;
+}

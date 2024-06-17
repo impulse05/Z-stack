@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: carthero
+      MYSQL_ROOT_USER: root
+      MYSQL_PASSWORD: AmanGupta
+      MYSQL_ROOT_PASSWORD: AmanGupta
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - mysql_volume:/var/lib/mysql1
+
+volumes:
+  mysql_volume:
