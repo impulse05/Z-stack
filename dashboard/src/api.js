@@ -11,11 +11,11 @@ const createNewOrderApi = (order) => {
 }
   
 const assignRiderApi = (orderId) => {
-    return axios.put(`http://localhost:8080/orders/${orderId}/assign_rider`);
+    return axios.patch(`http://localhost:8080/orders/${orderId}/assign_rider`);
 }
 
 const completeOrderApi = (orderId) => {
-    return axios.put(`http://localhost:8080/orders/${orderId}/deliver`);
+    return axios.patch(`http://localhost:8080/orders/${orderId}/deliver`);
 }
 
 const getFreeRidersApi = () => {

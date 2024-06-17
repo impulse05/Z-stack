@@ -18,7 +18,7 @@ export default function OrderTable(orders, assignRider, freeRiders, deliverOrder
                 </tr>
             </thead>
             <tbody>
-                {orders.map((order) => (
+                {orders?.map((order) => (
                     <tr key={order.order_id}>
                         <td>{order.order_id}</td>
                         <td>{order.user_id}</td>
@@ -30,12 +30,12 @@ export default function OrderTable(orders, assignRider, freeRiders, deliverOrder
                         <td>{order?.assigned ? (order?.delivered ? "Delivered" : "Assigned") : "Not Assigned"}</td>
                         <td>
                             {!order.assigned  && (
-                                <Button variant="success" onClick={() => assignRider(order.id)}>
+                                <Button variant="success" onClick={() => assignRider(order.order_id)}>
                                     Assign
                                 </Button>
                             )}
                             {order.assigned && !order.delivered  && (
-                                <Button variant="success" onClick={() => deliverOrder(order.id)}>
+                                <Button variant="success" onClick={() => deliverOrder(order.order_id)}>
                                     Deliver
                                 </Button>
                             )}
