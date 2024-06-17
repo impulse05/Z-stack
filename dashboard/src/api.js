@@ -2,28 +2,28 @@
 import axios from 'axios';
 
 const getOrdersApi = () => {
-    return axios.get("http://localhost:8080/orders");
+    return axios.get("/api/orders");
 }
 
 const createNewOrderApi = (order) => {
     console.log(order);
-    return axios.post("http://localhost:8080/orders", order)
+    return axios.post("/api/orders", order)
 }
   
 const assignRiderApi = (orderId) => {
-    return axios.patch(`http://localhost:8080/orders/${orderId}/assign_rider`);
+    return axios.patch(`/api/orders/${orderId}/assign_rider`);
 }
 
 const completeOrderApi = (orderId) => {
-    return axios.patch(`http://localhost:8080/orders/${orderId}/deliver`);
+    return axios.patch(`/api/orders/${orderId}/deliver`);
 }
 
 const getFreeRidersApi = () => {
-    return axios.get("http://localhost:8080/riders/free");
+    return axios.get("/api/riders/free");
 }
 
 const createRiderApi = (rider) => {
-    return axios.post("http://localhost:8080/riders", rider);
+    return axios.post("/api/riders", rider);
 }
 
 export {
