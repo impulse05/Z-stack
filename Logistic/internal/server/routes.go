@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,10 +19,7 @@ type Rider struct {
 func (s *Server) RegisterRoutes() http.Handler {
 	r := gin.Default()
 
-	r.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"*"},
-		AllowMethods: []string{"GET", "POST"},
-	}))
+	r.Use(Cors())
 
 	grpcClient, err := NewGRPCClient("localhost:50051")
 	if err != nil {
@@ -151,3 +147,17 @@ func getFreeRider() (riders []Rider, err error) {
 }
 
 // return rider id
+func Cors() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Headers", "Content-Type, Authorization, Origin, X-Requested-With, Accept")
+		c.Header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(http.StatusOK)
+			return
+		}
+
+		c.Next()
+	}
+}

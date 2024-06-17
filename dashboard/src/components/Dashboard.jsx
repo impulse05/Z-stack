@@ -44,10 +44,10 @@ const Dashboard = () => {
             console.log(response);
             fetchOrders();
             setNewOrder({
-                userId: '',
-                restaurantId: '',
-                itemId: '',
-                deliveryAddress: '',
+                user_id: '',
+                restaurant_id: '',
+                item_id: '',
+                delivery_address: '',
             });
         }).catch((error) => {
             console.log(error.response?.data.message);
